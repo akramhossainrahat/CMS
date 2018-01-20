@@ -44,10 +44,10 @@
                     Posts <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="posts" class="collapse">
                     <li>
-                        <a href="#"><i class="fa fa-eye"> View all posts</i></a>
+                        <a href="./posts.php"><i class="fa fa-eye"> View all posts</i></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-plus-square"> Add new post</i></a>
+                        <a href="./includes/add_posts.php"><i class="fa fa-plus-square"> Add new post</i></a>
                     </li>
                 </ul>
             </li>
@@ -62,7 +62,7 @@
                     Users <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="users" class="collapse">
                     <li>
-                        <a href="#"><i class="fa fa-users"> View all users</i></a>
+                        <a href="users.php"><i class="fa fa-users"> View all users</i></a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-user"> Add a user</i></a>
