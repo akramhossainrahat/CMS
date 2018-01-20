@@ -7,6 +7,14 @@
  */
 
 
+function confirmQuery($result){
+
+    global $conn;
+    if (!$result){
+        die("QUERY FAILED". mysqli_error($conn));
+    }
+}
+
 function insertCategories()
 {
     if (isset($_POST['submit_cat'])) {
