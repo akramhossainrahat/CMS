@@ -1,5 +1,5 @@
 <!-- Header -->
-<?php include"includes/admin_header.php"; ?>
+<?php include "includes/admin_header.php"; ?>
 <div id="wrapper">
 
     <!-- Navigation -->
@@ -27,8 +27,8 @@
                             include "includes/add_posts.php";
                             break;
 
-                        case '07';
-                            echo 'This is from source 07';
+                        case 'edit_posts';
+                            include "includes/edit_posts.php";
                             break;
 
                         case '11';
@@ -38,7 +38,7 @@
                         default:
                             include "includes/view_posts.php";
 
-                        }
+                    }
                     ?>
 
                 </div>

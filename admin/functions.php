@@ -76,4 +76,22 @@ function deleteCategories()
     }
 }
 
+function deletePosts(){
+    global $conn;
+
+    if (isset($_GET['delete'])) {
+        $the_post_id = $_GET['delete'];
+
+        $query = "DELETE FROM posts where post_id = {$the_post_id}";
+
+        $post_result = mysqli_query($conn, $query);
+
+        if (!$post_result) {
+            die("QUERY FAILED" . mysqli_error($conn));
+        } else {
+            header("Location:posts.php");
+        }
+    }
+}
+
 ?>

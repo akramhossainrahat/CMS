@@ -47,7 +47,7 @@
                         <a href="./posts.php"><i class="fa fa-eye"> View all posts</i></a>
                     </li>
                     <li>
-                        <a href="./posts.php"><i class="fa fa-plus-square"> Add new post</i></a>
+                        <a href="./posts.php?source=add_posts"><i class="fa fa-plus-square"> Add new post</i></a>
                     </li>
                 </ul>
             </li>
