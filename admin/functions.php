@@ -7,11 +7,12 @@
  */
 
 
-function confirmQuery($result){
+function confirmQuery($result)
+{
 
     global $conn;
-    if (!$result){
-        die("QUERY FAILED". mysqli_error($conn));
+    if (!$result) {
+        die("QUERY FAILED" . mysqli_error($conn));
     }
 }
 
@@ -76,7 +77,8 @@ function deleteCategories()
     }
 }
 
-function deletePosts(){
+function deletePosts()
+{
     global $conn;
 
     if (isset($_GET['delete'])) {
@@ -91,6 +93,45 @@ function deletePosts(){
         } else {
             header("Location:posts.php");
         }
+    }
+}
+
+function updatePost()
+{
+    global $conn;
+    if (isset($_POST['update_post'])) {
+        $the_post_id = $_GET['post_id'];
+
+        $post_title = mysqli_real_escape_string($conn, $_POST['title']);
+        $post_category_id = mysqli_real_escape_string($conn, $_POST['post_category']);
+        $post_author = mysqli_real_escape_string($conn, $_POST['author']);
+        $post_status = mysqli_real_escape_string($conn, $_POST['post_status']);
+
+        //Save image in a temporary location
+        $post_image = $_FILES['image']['name'];
+        $post_image_tmp = $_FILES['image']['tmp_name'];
+
+        $post_tags = mysqli_real_escape_string($conn, $_POST['post_tags']);
+        $post_content = mysqli_real_escape_string($conn, $_POST['post_content']);
+
+        //Move uploaded picture in a location
+        move_uploaded_file($post_image_tmp, "../images/$post_image");
+
+        if (empty($post_image)){
+            $query = "SELECT * FROM posts where post_id = {$the_post_id}";
+            $image_result = mysqli_query($conn, $query);
+
+            while ($row = mysqli_fetch_assoc($image_result)){
+                $post_image = $row['post_image'];
+            }
+        }
+
+        $query = "UPDATE posts SET post_title = '$post_title', post_category_id = '$post_category_id', post_author = '$post_author', post_status = '$post_status', post_image = '$post_image', post_tags = '$post_tags', post_content = '$post_content', post_date = now() WHERE post_id = $the_post_id";
+
+
+        $update_Post = mysqli_query($conn, $query);
+
+        confirmQuery($update_Post);
     }
 }
 

@@ -2,7 +2,7 @@
 if (isset($_GET['post_id'])) {
     $the_post_id = $_GET['post_id'];
 
-    $query = "SELECT * FROM posts";
+    $query = "SELECT * FROM posts WHERE post_id={$the_post_id}";
     $posts_result_by_id = mysqli_query($conn, $query);
 
     while ($row = mysqli_fetch_assoc($posts_result_by_id)) {
@@ -19,6 +19,10 @@ if (isset($_GET['post_id'])) {
         $post_comment_count = $row['post_comment_count'];
     }
 }
+
+if (isset($_POST['update_post'])){
+    updatePost();
+}
 ?>
 
 
@@ -27,11 +31,11 @@ if (isset($_GET['post_id'])) {
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="post_title">Post Title</label>
-        <input type="text" class="form-control" name="title" value="<?php echo $post_title ?>">
+        <input type="text" class="form-control" value="<?php echo $post_title ?>" name="title">
     </div>
     <div class="form-group">
         <label for="post_category_id">Post Category</label>
-        <select>
+        <select name="post_category">
 
             <?php
             $query = "SELECT * FROM categories";
@@ -40,10 +44,10 @@ if (isset($_GET['post_id'])) {
             //confirmQuery($cat_result);
 
             while ($row = mysqli_fetch_assoc($cat_result)) {
-            $cat_id = $row['cat_id'];
-            $cat_title = $row['cat_title'];
+                $cat_id = $row['cat_id'];
+                $cat_title = $row['cat_title'];
 
-            echo "<option>{$cat_title}</option>";
+                echo "<option>{$cat_title}</option>";
 
             }
             ?>
@@ -52,19 +56,20 @@ if (isset($_GET['post_id'])) {
     </div>
     <div class="form-group">
         <label for="title">Post Author</label>
-        <input type="text" class="form-control" name="author" value="<?php echo $post_author ?>">
+        <input type="text" class="form-control" value="<?php echo $post_author ?>" name="author">
     </div>
     <div class="form-group">
         <label for="post_status">Post Status</label>
-        <input type="text" class="form-control" name="post_status" value="<?php echo $post_status ?>">
+        <input type="text" class="form-control" value="<?php echo $post_status ?>" name="post_status">
     </div>
     <div class="form-group">
         <label for="post_image">Post Image</label>
         <img src="../images/<?php echo $post_image ?>" width="100px" height="100px">
+        <input type="file" name="image">
     </div>
     <div class="form-group">
         <label for="post_tags">Post Tags</label>
-        <input type="text" class="form-control" name="post_tags" value="<?php echo $post_tags ?>">
+        <input type="text" class="form-control" value="<?php echo $post_tags ?>" name="post_tags">
     </div>
     <div class="form-group">
         <label for="post_content">Post Content</label>
@@ -72,7 +77,7 @@ if (isset($_GET['post_id'])) {
                   rows="10"><?php echo $post_content ?></textarea>
     </div>
     <div class="form-group">
-        <input type="submit" class="btn btn-primary" name="create_post" value="Publish">
+        <input type="submit" class="btn btn-primary" name="update_post" value="Update">
     </div>
 
 </form>
