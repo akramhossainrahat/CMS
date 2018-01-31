@@ -11,6 +11,7 @@
         <th>Tags</th>
         <th>Comments</th>
         <th>Date</th>
+        <th colspan="2">Options</th>
     </tr>
     </thead>
     <tbody>
@@ -39,7 +40,7 @@
         echo "<td>{$post_title}</td>";
         echo "<td>{$post_author}</td>";
 
-        //Showing Category name
+       //Showing Category name
         $query = "SELECT * FROM categories WHERE cat_id = {$post_category_id}";
         $id_cat_result = mysqli_query($conn, $query);
 
@@ -50,6 +51,7 @@
             echo "<td>{$cat_title}</td>";
         }
 
+        //echo "<td>{$post_category_id}</td>";
         echo "<td>{$post_status}</td>";
         echo "<td><img class='img-responsive' src='../images/{$post_image}' alt='Image'></td>";
         echo "<td>{$post_content}</td>";
@@ -61,6 +63,7 @@
         echo "</tr>";
     }
     ?>
+
     <!--    Delete a Post-->
     <?php deletePosts(); ?>
 
