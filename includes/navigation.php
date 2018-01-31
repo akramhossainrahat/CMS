@@ -15,7 +15,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <!--                Fetch data from categories table & show it in the navbar.-->
+                <!--Fetch data from categories table & show it in the navbar.-->
                 <?php
                 $query = "SELECT * FROM categories";
                 $cat_result = mysqli_query($conn, $query);
