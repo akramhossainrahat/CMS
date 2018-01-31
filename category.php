@@ -17,13 +17,17 @@ include "includes/navigation.php";
 
         <h1 class="page-header">
             Welcome to the Blog
-<!--            <small>Secondary Text</small>-->
+            <!--            <small>Secondary Text</small>-->
         </h1>
 
         <!-- Fetch data from posts table -->
         <!-- Blog Post starts from here-->
         <?php
-        $query = "SELECT * FROM posts";
+        if (isset($_GET['cat_title'])){
+            $the_cat_title = $_GET['cat_title'];
+        }
+
+        $query = "SELECT * FROM posts WHERE post_category = '$the_cat_title'";
         $post_result = mysqli_query($conn, $query);
 
         while ($row = mysqli_fetch_assoc($post_result)) {
@@ -46,8 +50,8 @@ include "includes/navigation.php";
             <img class="img-responsive" src="images/<?php echo $post_image?>" alt="">
             <hr>
             <p><?php echo $post_content ?></p>
-            <a class="btn btn-primary" href="post.php?post_id=<?php echo $post_id ?>">Read More <span
-                        class="glyphicon glyphicon-chevron-right"></span></a>
+            <a class="btn btn-primary" href="post.php?post_id=<?php echo $post_id ?>"">Read More <span
+                class="glyphicon glyphicon-chevron-right"></span></a>
 
             <hr>
 

@@ -103,7 +103,7 @@ function updatePost()
         $the_post_id = $_GET['post_id'];
 
         $post_title = mysqli_real_escape_string($conn, $_POST['title']);
-        $post_category_id = mysqli_real_escape_string($conn, $_POST['post_category']);
+        $post_category = mysqli_real_escape_string($conn, $_POST['post_category']);
         $post_author = mysqli_real_escape_string($conn, $_POST['author']);
         $post_status = mysqli_real_escape_string($conn, $_POST['post_status']);
 
@@ -126,7 +126,7 @@ function updatePost()
             }
         }
 
-        $query = "UPDATE posts SET post_title = '$post_title', post_category_id = '$post_category_id', post_author = '$post_author', post_status = '$post_status', post_image = '$post_image', post_tags = '$post_tags', post_content = '$post_content', post_date = now() WHERE post_id = $the_post_id";
+        $query = "UPDATE posts SET post_title = '$post_title', post_category = '$post_category', post_author = '$post_author', post_status = '$post_status', post_image = '$post_image', post_tags = '$post_tags', post_content = '$post_content', post_date = now() WHERE post_id = $the_post_id";
 
 
         $update_Post = mysqli_query($conn, $query);

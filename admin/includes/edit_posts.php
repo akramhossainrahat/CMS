@@ -8,7 +8,7 @@ if (isset($_GET['post_id'])) {
     while ($row = mysqli_fetch_assoc($posts_result_by_id)) {
 
         $post_id = $row['post_id'];
-        $post_category_id = $row['post_category_id'];
+        $post_category = $row['post_category'];
         $post_title = $row['post_title'];
         $post_author = $row['post_author'];
         $post_date = $row['post_date'];
@@ -34,7 +34,7 @@ if (isset($_POST['update_post'])){
         <input type="text" class="form-control" value="<?php echo $post_title ?>" name="title">
     </div>
     <div class="form-group">
-        <label for="post_category_id">Post Category</label>
+        <label for="post_category">Post Category</label>
         <select name="post_category">
 
             <?php

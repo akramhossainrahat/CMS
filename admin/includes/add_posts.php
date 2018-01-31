@@ -2,7 +2,7 @@
 <?php
 if (isset($_POST['create_post'])) {
     $post_title = mysqli_real_escape_string($conn, $_POST['title']);
-    $post_category_id = mysqli_real_escape_string($conn, $_POST['post_category']);
+    $post_category = mysqli_real_escape_string($conn, $_POST['post_category']);
     $post_author = mysqli_real_escape_string($conn, $_POST['author']);
     $post_status = mysqli_real_escape_string($conn, $_POST['post_status']);
 
@@ -18,8 +18,7 @@ if (isset($_POST['create_post'])) {
     //Move uploaded picture in a location
     move_uploaded_file($post_image_tmp, "../images/$post_image");
 
-    $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status)";
-    $query .= "VALUES({$post_category_id}, {$post_title}, {$post_author}, now(), {$post_image}, {$post_content}, {$post_tags}, {$post_comment_count}, {$post_status})";
+    $query = "INSERT INTO posts (post_category, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status) VALUES('$post_category', '$post_title', '$post_author', now(), '$post_image', '$post_content', '$post_tags', '$post_comment_count', '$post_status')";
 
     $insert_post = mysqli_query($conn, $query);
     confirmQuery($insert_post);
@@ -33,7 +32,7 @@ if (isset($_POST['create_post'])) {
         <input type="text" class="form-control" name="title">
     </div>
     <div class="form-group">
-        <label for="post_category_id">Post Category</label>
+        <label for="post_category">Post Category</label>
         <select name="post_category">
 
             <?php

@@ -24,7 +24,7 @@
     while ($row = mysqli_fetch_assoc($posts_result)) {
 
         $post_id = $row['post_id'];
-        $post_category_id = $row['post_category_id'];
+        $post_category = $row['post_category'];
         $post_title = $row['post_title'];
         $post_author = $row['post_author'];
         $post_date = $row['post_date'];
@@ -40,18 +40,18 @@
         echo "<td>{$post_title}</td>";
         echo "<td>{$post_author}</td>";
 
-       //Showing Category name
-        $query = "SELECT * FROM categories WHERE cat_id = {$post_category_id}";
-        $id_cat_result = mysqli_query($conn, $query);
+/*       //Showing Category name
+        $query = "SELECT * FROM categories WHERE cat_id = {$post_category}";
+        $cat_result = mysqli_query($conn, $query);
 
-        while ($row = mysqli_fetch_assoc($id_cat_result)) {
+        while ($row = mysqli_fetch_assoc($cat_result)) {
             $cat_id = $row['cat_id'];
             $cat_title = $row['cat_title'];
 
             echo "<td>{$cat_title}</td>";
         }
-
-        //echo "<td>{$post_category_id}</td>";
+*/
+        echo "<td>{$post_category}</td>";
         echo "<td>{$post_status}</td>";
         echo "<td><img class='img-responsive' src='../images/{$post_image}' alt='Image'></td>";
         echo "<td>{$post_content}</td>";
